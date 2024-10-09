@@ -5,39 +5,36 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-
+      
     steps:
       - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'  # Specify your desired Python version
+        uses: actions/setup-python@v2  # This assumes you are using an action to set up Python
+      
 
+        
   test:
-    runs-on: ubuntu-latest
-    needs: build
+  runs-on: ubuntu-latest
+  needs: build
 
-    steps:
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
+    - name: Run Unit Tests
+      run: |
+        python -m unittest discover -s . -p "test_app.py" -v
 
-      - name: Run Unit Tests
-        run: |
-          python -m unittest discover -s .. -p "test_app.py"  # Use discover to find tests
-
+    
   run:
     runs-on: ubuntu-latest
     needs: test
-
+      
     steps:
       - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-
+        uses: actions/setup-python@v2  # Set up Python for the run job
+      
       - name: Run App
         run: |
           python "app.py"  # Run your application

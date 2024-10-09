@@ -1,0 +1,45 @@
+name: continous-integration
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Set up Python
+      - uses: ./common-setup.yml
+  
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+      
+    steps:
+      - name: Set up Python
+      - uses: ./common-setup.yml
+
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s . -p "test_app.py"  # Run tests
+    
+  run:
+    runs-on: ubuntu-latest
+    needs: test
+      
+    steps:
+      - name: Set up Python
+      - uses: ./common-setup.yml
+
+      - name: Runs App
+        run: |
+          python "app.py"   
+    
+
+
+
+    
+
+
+
+

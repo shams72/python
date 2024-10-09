@@ -13,18 +13,18 @@ jobs:
 
         
   test:
-  runs-on: ubuntu-latest
-  needs: build
+    runs-on: ubuntu-latest
+    needs: build
 
-  steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-    - name: Run Unit Tests
-      run: |
-        python -m unittest discover -s . -p "test_app.py" -v
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s . -p "test_app.py" -v
 
     
   run:

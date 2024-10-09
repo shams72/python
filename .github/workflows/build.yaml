@@ -36,4 +36,5 @@ jobs:
       
       - name: Run App
         run: |
-          python "ap.py"  # Run your application
+          ls 
+          python "./ap.py"  # Run your application

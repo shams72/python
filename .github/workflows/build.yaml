@@ -5,45 +5,43 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+      
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v2  # Dieser Schritt checkt den Code ins Verzeichnis ein
-      
       - name: Set up Python
-        uses: actions/setup-python@v2  # Set up Python
-        with:
-          python-version: '3.x'
+        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2  # This assumes you are using an action to set up Python
       
-      - name: List files in the repository (Build)
-        run: |
-          ls  # Zeigt Dateien im aktuellen Verzeichnis an
+
         
   test:
     runs-on: ubuntu-latest
-    needs: build
+    needs: run
+
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v2  # Repository auschecken
-      
+      - name: Set up Python
+        uses: actions/setup-python@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      
-      - name: List files in the repository (Test)
+
+      - name: Run Unit Tests
         run: |
-          ls  # Zeigt Dateien im aktuellen Verzeichnis an
+          ls 
     
   run:
     runs-on: ubuntu-latest
-    needs: test
+    needs: build
+      
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v2  # Repository auschecken
-      
+      - name : checkout 
+        uses : actions/checkout@v2 
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v2  # Set up Python for the run job
       
-      - name: List files in the repository (Run)
+      - name: Run App
         run: |
-          ls  # Zeigt Dateien im aktuellen Verzeichnis an
+          ls 
+         

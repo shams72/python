@@ -19,8 +19,9 @@ jobs:
     needs: run
 
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name : checkout 
+        uses : actions/checkout@v2 
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
